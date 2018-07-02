@@ -9,9 +9,9 @@ Gem::Specification.new do |spec|
   spec.authors       = ["Abraham Kuri"]
   spec.email         = ["kurenn@icalialabs.com"]
 
-  spec.summary       = %q{ Tailwindcss Rails Integration }
-  spec.description = %q{ Tailwindcss Rails Integration }
-  spec.homepage      = "https://github.com/IcaliaLabs/tailwindcss"
+  spec.summary       = %q{ Tailwind CSS Rails Integration + Webpacker }
+  spec.description = %q{ Tailwind CSS Rails Integration + Webpacker }
+  spec.homepage      = "https://github.com/IcaliaLabs/tailwindcss-rails"
   spec.license       = "MIT"
 
   # Prevent pushing this gem to RubyGems.org. To allow pushes either set the 'allowed_push_host'
