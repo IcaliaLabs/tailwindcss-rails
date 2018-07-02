@@ -1,38 +1,113 @@
-# Tailwindcss
+# Tailwind CSS Rails
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/tailwindcss`. To experiment with that code, run `bin/console` for an interactive prompt.
+The `tailwindcss` gem helps you to easily install the Tailwind CSS framework by using WebPack and the `webpacker` gem.
 
-TODO: Delete this and the text above, and describe your gem
 
-## Installation
 
-Add this line to your application's Gemfile:
+## Table of contents
+
+- [Installing the gem](#installing-the-gem)
+- [Contributing](#contributing)
+- [License](#license)
+- [Code of conduct](code-of-conduct)
+
+
+
+## Installing the gem
+
+In order to run the install generator from `tailwindcss` you need to add the [webpacker](https://github.com/rails/webpacker) gem, and run the installation setup for it.
+
+
+
+#### Installing webpacker
+
+You first need to add this to you `Gemfile`:
+
+```
+# Gemfile
+gem 'webpacker', '~> 3.5'
+
+# OR if you prefer to use master
+gem 'webpacker', git: 'https://github.com/rails/webpacker.git'
+yarn add https://github.com/rails/webpacker.git
+
+# OR to try out 4.x pre-release
+gem 'webpacker', '>= 4.0.x'
+yarn add @rails/webpacker@4.0.0-pre.2
+```
+
+Finally, run following to install Webpacker:
+
+```
+bundle
+bundle exec rails webpacker:install
+
+# OR (on rails version < 5.0)
+bundle exec rake webpacker:install
+```
+
+
+
+**You are now ready to add the tailwindcss gem**
+
+
+
+#### Installing Tailwind CSS
+
+You need to include the `tailwindcss` gem inside your `Gemfile`:
 
 ```ruby
 gem 'tailwindcss'
 ```
 
-And then execute:
+or you can install the latest build:
 
-    $ bundle
+```ruby
+gem 'tailwindcss', git: 'git@github.com:IcaliaLabs/tailwindcss-rails.git'
+```
 
-Or install it yourself as:
+Install the gem by running the bundle command:
 
-    $ gem install tailwindcss
+```
+$ bundle
+```
 
-## Usage
+After running the `bundle` command, you can now run the installer.
 
-TODO: Write usage instructions here
+```console
+$ rails g tailwindcss:install
+```
 
-## Development
+This will prepare the application to use tailwind by:
 
-After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake spec` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
+1. Adding tailwind by using `yarn`
+2. Create a `javascript/css` directory
+3. Init tailwind from the `node_modules`
+4. Setup tailwind
+5. Configure `.postcssrc.yml` file
 
-To install this gem onto your local machine, run `bundle exec rake install`. To release a new version, update the version number in `version.rb`, and then run `bundle exec rake release`, which will create a git tag for the version, push git commits and tags, and push the `.gem` file to [rubygems.org](https://rubygems.org).
+If you want to know how this is achieve, you can go [here](https://github.com/IcaliaLabs/tailwindcss-rails/blob/master/lib/generators/tailwindcss/install_generator.rb).
+
+Lastly but not least, you have to add this two lines to your `application` layout in order to compile it.
+
+```
+<%= stylesheet_pack_tag    'application' %>
+<%= javascript_pack_tag 'application' %>
+```
+
+This two lines will compile the assets from the `app/javascript/css` folder.
+
+Don't forget to run the `webpacker` server like so:
+
+```
+./bin/webpack-dev-server
+```
+
+This will lift a node server that will watch the changes on files and compile them.
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/tailwindcss. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](http://contributor-covenant.org) code of conduct.
+Bug reports and pull requests are welcome on GitHub at https://github.com/IcaliaLabs/tailwindcss-rails. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](http://contributor-covenant.org) code of conduct.
 
 ## License
 
