@@ -63,7 +63,7 @@ gem 'tailwindcss'
 or you can install the latest build:
 
 ```ruby
-gem 'tailwindcss', git: 'git@github.com:IcaliaLabs/tailwindcss-rails.git'
+gem 'tailwindcss', git: 'https://github.com/IcaliaLabs/tailwindcss-rails.git'
 ```
 
 Install the gem by running the bundle command:
