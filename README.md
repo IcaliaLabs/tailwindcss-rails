@@ -57,7 +57,7 @@ bundle exec rake webpacker:install
 You need to include the `tailwindcss` gem inside your `Gemfile`:
 
 ```ruby
-gem 'tailwindcss'
+gem 'tailwindcss', '~> 0.2.0'
 ```
 
 or you can install the latest build:
