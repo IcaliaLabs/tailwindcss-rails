@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require 'rails/generators'
+require 'rails/generators/base'
 
 module Tailwindcss
   module Generators
