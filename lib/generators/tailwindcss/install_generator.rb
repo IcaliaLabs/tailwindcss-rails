@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
-require 'rails/generators/base'
-require 'securerandom'
+require 'rails/generators'
 
 module Tailwindcss
   module Generators
