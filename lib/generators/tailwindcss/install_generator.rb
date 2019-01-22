@@ -25,7 +25,7 @@ module Tailwindcss
       end
 
       def configure_postcssrc
-        inject_into_file "./.postcssrc.yml", "\n  tailwindcss: './app/javascript/css/tailwind.js'", before: "postcss-cssnext: {}"
+        inject_into_file "./.postcssrc.yml", "\n  tailwindcss: './app/javascript/css/tailwind.js'", after: "postcss-import: {}"
       end
     end
   end
