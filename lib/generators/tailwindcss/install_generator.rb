@@ -8,7 +8,7 @@ module Tailwindcss
       source_root File.expand_path("../../templates", __FILE__)
 
       def yarn_add_tailwindcss
-        run "yarn --ignore-engines add tailwindcss"
+        run "yarn --ignore-engines add tailwindcss@1.0.0 --tilde"
       end
 
       def init_tailwindcss
