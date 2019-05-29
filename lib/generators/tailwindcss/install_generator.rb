@@ -12,12 +12,12 @@ module Tailwindcss
       end
 
       def init_tailwindcss
-        run "./node_modules/.bin/tailwind init tailwind.config.js"
+        run "./node_modules/.bin/tailwind init ./tailwind.config.js"
       end
 
       def setup_tailwindcss
-        template "tailwind.css", "app/javascript/css/tailwind.css"
-        append_to_file "app/javascript/packs/application.js", 'import "../css/tailwind.css"'
+        template "tailwind.css", "app/javascript/css/application.css"
+        append_to_file "app/javascript/packs/application.js", 'import "../css/application.css"'
       end
 
       def configure_postcssrc
@@ -26,7 +26,7 @@ module Tailwindcss
       end
 
       def remove_corejs_3
-        gsub_file("babel.config.js", /,\n\s+corejs: 3/, '')
+        gsub_file "babel.config.js", /regenerator: true,\n          corejs: 3/, "regenerator: true,"
       end
     end
   end
