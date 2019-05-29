@@ -19,63 +19,26 @@ In order to run the install generator from `tailwindcss` you need to add the [we
 
 
 
-#### Installing webpacker
+#### Installing webpacker + tailwindcss
 
-You first need to add this to you `Gemfile`:
+tailwindcss-rails ~> 1.0.0 supports Rails ~>5.2.0 and tailwindcss ~> 1.0
+
+You first need to add the following gems to your `Gemfile`:
 
 ```
 # Gemfile
-gem 'webpacker', '~> 3.5'
-
-# OR if you prefer to use master
-gem 'webpacker', git: 'https://github.com/rails/webpacker.git'
-yarn add https://github.com/rails/webpacker.git
-
-# OR to try out 4.x pre-release
-gem 'webpacker', '>= 4.0.x'
-yarn add @rails/webpacker@4.0.0-pre.2
+gem 'webpacker', '~> 4.0.0'
+gem 'tailwindcss', '~> 1.0.0'
 ```
 
-Finally, run following to install Webpacker:
+Run the following:
 
-```
+```shell
 bundle
+
 bundle exec rails webpacker:install
 
-# OR (on rails version < 5.0)
-bundle exec rake webpacker:install
-```
-
-
-
-**You are now ready to add the tailwindcss gem**
-
-
-
-#### Installing Tailwind CSS
-
-You need to include the `tailwindcss` gem inside your `Gemfile`:
-
-```ruby
-gem 'tailwindcss', '~> 0.2.0'
-```
-
-or you can install the latest build:
-
-```ruby
-gem 'tailwindcss', git: 'https://github.com/IcaliaLabs/tailwindcss-rails.git'
-```
-
-Install the gem by running the bundle command:
-
-```
-$ bundle
-```
-
-After running the `bundle` command, you can now run the installer.
-
-```console
-$ rails g tailwindcss:install
+bundle exec rails g tailwindcss:install
 ```
 
 This will prepare the application to use tailwind by:
@@ -84,26 +47,29 @@ This will prepare the application to use tailwind by:
 2. Create a `javascript/css` directory
 3. Init tailwind from the `node_modules`
 4. Setup tailwind
-5. Configure `.postcssrc.yml` file
+5. Configure `postcss.config.js` file
 
-If you want to know how this is achieve, you can go [here](https://github.com/IcaliaLabs/tailwindcss-rails/blob/master/lib/generators/tailwindcss/install_generator.rb).
+If you want to know how this is achieved, you can go [here](https://github.com/IcaliaLabs/tailwindcss-rails/blob/master/lib/generators/tailwindcss/install_generator.rb).
 
-Lastly but not least, you have to add this two lines to your `application` layout in order to compile it.
+These two lines will compile the assets from the `app/javascript/css` folder.
 
+You must add the following to your `config/initializers/content_security_policy.rb`:
+```ruby
+  Rails.application.config.content_security_policy do |policy|
+    policy.connect_src :self, :https, 'http://localhost:3035', 'ws://localhost:3035' if Rails.env.development?
+  end
 ```
+
+Inside of `config/webpacker.yml`, you must set `extract_css: true` default is `false`.
+
+You have to add these two lines to your `application` layout in order to compile it.
+
+```ruby
 <%= stylesheet_pack_tag    'application' %>
 <%= javascript_pack_tag 'application' %>
 ```
 
-This two lines will compile the assets from the `app/javascript/css` folder.
-
-Don't forget to run the `webpacker` server like so:
-
-```
-./bin/webpack-dev-server
-```
-
-This will lift a node server that will watch the changes on files and compile them.
+Webpacker will automatically compile your assets while a `bundle exec rails s` is active.
 
 ## Contributing
 
