@@ -11,10 +11,6 @@ module Tailwindcss
         run "yarn --ignore-engines add tailwindcss"
       end
 
-      def create_javascript_css_directory
-        run "mkdir app/javascript/css"
-      end
-
       def init_tailwindcss
         run "./node_modules/.bin/tailwind init tailwind.config.js"
       end
@@ -30,7 +26,7 @@ module Tailwindcss
       end
 
       def remove_corejs_3
-        gsub_file "babel.config.js", /\n\s+corejs: 3\n/, '\n'
+        gsub_file("babel.config.js", /,\n\s+corejs: 3/, '')
       end
     end
   end
