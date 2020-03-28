@@ -65,7 +65,7 @@ Inside of `config/webpacker.yml`, you must set `extract_css: true` default is `f
 You have to add these two lines to your `application` layout in order to compile it.
 
 ```ruby
-<%= stylesheet_pack_tag    'application' %>
+<%= stylesheet_pack_tag 'application' %>
 <%= javascript_pack_tag 'application' %>
 ```
 
